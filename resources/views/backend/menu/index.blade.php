@@ -29,8 +29,8 @@
                             <th scope="row">1</th>
                             <td>{{ $data->name }}</td>
                             <td>
-                                @forelse($data->childMenu as $data)
-                                    <span class="badge bg-success">{{$data->name}}</span>
+                                @forelse($data->childMenu as $d)
+                                    <span class="badge bg-success">{{$d->name}}</span>
                                 @empty
                                     <p>No Data</p>
                                 @endforelse

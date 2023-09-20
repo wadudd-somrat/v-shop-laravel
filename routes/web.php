@@ -32,6 +32,7 @@ Route::group(['prefix'=>'menus','as'=>'menus'],function() {
     Route::get('/create',[MenuController::class,'create'])->name('.create');
     Route::get('/sub-menu/{id}',[MenuController::class,'getSubMenu'])->name('.childes');
     Route::get('/edit/{id}',[MenuController::class,'edit'])->name('.edit');
+    Route::post('/update/{id}',[MenuController::class,'update'])->name('.update');
 });
 
 Route::group(['prefix'=>'products','as'=>'products'],function() {
