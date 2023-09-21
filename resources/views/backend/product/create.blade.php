@@ -6,39 +6,69 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-8" style="float: none; margin: 15px auto;">
                 <div class="bg-secondary rounded h-100 p-4">
-                    <h6 class="mb-4">New Menu</h6>
-                    <form action="{{ route('menus.store') }}" method="post">
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <h6 class="mb-4">New Product</h6>
+                    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="row mb-3">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' id="name" required>
+                                <input type="text" placeholder="name" class="form-control @error('name') is-invalid @enderror" name='name' id="name" required>
                                 @error('name')
                                 <p class="alert alert-danger pt-2">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3" >
-                            <legend class="col-form-label col-sm-2 pt-0"></legend>
+                        <div class="row mb-3">
+                            <label for="menu" class="col-sm-2 col-form-label">Menu</label>
                             <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="subMenuCheck" checked>
-                                    <label class="form-check-label" for="subMenuCheck">
-                                        Is this the parent menu?
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3" id="subMenuDisplay" style="display: none;">
-                            <label for="subMenu" class="col-sm-2 col-form-label">Parent Menu</label>
-                            <div class="col-sm-10">
-                                <select class="form-select mb-3" aria-label="Default select example" name="parent_id" id="subMenu">
+                                <select class="form-select mb-3" aria-label="Default select example" name="menu_id" id="menu">
                                     <option selected value="0">Open this select menu</option>
                                     @forelse($menus as $key=>$data)
                                     <option value="{{$key}}">{{ $data }}</option>
                                     @empty
                                     @endforelse
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="price" class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Price" class="form-control @error('price') is-invalid @enderror" name='price' id="price" required>
+                                @error('price')
+                                <p class="alert alert-danger pt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="weight"  class="col-sm-2 col-form-label">Weight</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Weight" class="form-control @error('weight') is-invalid @enderror" name='weight' id="weight" required>
+                                @error('weight')
+                                <p class="alert alert-danger pt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="details" class="col-sm-2 col-form-label">Details</label>
+                            <div class="col-sm-10">
+                                <textarea id="details" placeholder="details" rows="2" name="details" class="form-control @error('details') is-invalid @enderror"></textarea>
+                                @error('details')
+                                <p class="alert alert-danger pt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                                @error('image')
+                                <p class="alert alert-danger pt-3">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -53,19 +83,5 @@
 @endsection
 
 @section('js-custom')
-    <script>
-        $(document).ready(function() {
-            $("#subMenuCheck").prop('checked', true);
-            $('#subMenuCheck').click(function() {
-                if ($(this).is(':checked')) {
-                    $(this).attr('value', 'true');
-                    $('#subMenu').val('0');
-                    $("#subMenuDisplay").hide();
-                } else {
-                    $(this).attr('value', 'false');
-                    $("#subMenuDisplay").show()
-                }
-            });
-        });
-    </script>
+
 @endsection

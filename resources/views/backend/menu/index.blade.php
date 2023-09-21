@@ -26,7 +26,7 @@
                     <tbody>
                     @forelse($results as $data)
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $data->name }}</td>
                             <td>
                                 @forelse($data->childMenu as $d)

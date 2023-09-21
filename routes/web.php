@@ -40,5 +40,8 @@ Route::group(['prefix'=>'products','as'=>'products'],function() {
     Route::post('/', [ProductController::class,'store'])->name('.store');
     Route::get('/create',[ProductController::class,'create'])->name('.create');
     Route::get('/edit/{id}',[ProductController::class,'edit'])->name('.edit');
+    Route::post('/update/{id}',[ProductController::class,'update'])->name('.update');
+    Route::get('/show/{id}',[ProductController::class,'show'])->name('.show');
+    Route::get('/delete/{id}',[ProductController::class,'destroy'])->name('.delete');
 });
 
