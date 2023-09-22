@@ -97,7 +97,8 @@
                 <div class="col-md-7">
                     <h3>{{ __('Login') }} to <strong>V-Shop</strong></h3>
                     <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
-                    <form action="{{ route('login') }} " method="post">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
                         <div class="form-group first">
                             <label for="username">Email</label>
                             <input type="text" id="email" placeholder="email@vshop.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

@@ -54,7 +54,7 @@ class MenuController extends Controller
      */
     public function show(Menu $menu,$id)
     {
-        $result = Menu::with('childMenu')->where('id',$id)->where('parent_id',0)->get();
+        $result = Menu::with('childMenu')->where('id',$id)->where('parent_id',0)->first();
         dd($result);
     }
 
@@ -66,7 +66,9 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu,$id)
     {
-        dd($id);
+        $result = Menu::with('childMenu')->where('id',$id)->where('parent_id',0)->first();
+      return view('backend.menu.edit',compact('result'));
+
     }
 
     /**
@@ -76,9 +78,17 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request,$id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+          $updatedMenu =   Menu::where('id',$id)->update([
+            'name' => $request->name,
+            ]);
+
+        return redirect()->route('menus')->with('success', 'Data Update Successfully');
     }
 
     /**

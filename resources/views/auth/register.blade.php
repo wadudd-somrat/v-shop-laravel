@@ -22,10 +22,11 @@
                 <div class="col-md-7">
                     <h3>{{ __('Register') }} to <strong>V-Shop</strong></h3>
                     <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
-                    <form action="#" method="post">
+                    <form action="{{url('register')}}" method="post">
+                        {{csrf_field()}}
                         <div class="form-group first">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="your-email@gmail.com" id="email">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="your-email@gmail.com" name="email" id="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -34,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="XXXXXXXXX" id="phone">
+                            <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="XXXXXXXXX" id="phone">
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -43,7 +44,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" id="password">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" id="password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
