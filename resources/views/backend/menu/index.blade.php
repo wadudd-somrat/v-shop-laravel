@@ -34,6 +34,7 @@
                                 @empty
                                     <p>No Data</p>
                                 @endforelse
+                                    <a href="#">Edit</a>
 
                             </td>
                             <td>
